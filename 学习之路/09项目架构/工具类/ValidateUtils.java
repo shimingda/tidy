@@ -1,9 +1,12 @@
 package com.rw.ssd.biz.utils;
 
+import java.util.Collection;
+
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.rw.ssd.biz.exception.BizError;
-import com.rw.ssd.biz.exception.BizException;
+import com.rw.ssd.biz.exception.ParameterException;
+import com.rw.ssd.commons.exception.UfaceError;
 
 /******************************************************************************
  * 
@@ -23,14 +26,22 @@ public class ValidateUtils {
     public static void notBlank(final String chars) {
         if (chars == null || StringUtils.isBlank(chars)) {
 
-            throw new BizException(BizError.BASICS_PARAM_EXCEPTION_CODE);
+            throw new ParameterException(UfaceError.BASICS_PARAM_EXCEPTION_CODE);
         }
     }
 
     public static void notNull(final Object object) {
         if (object == null) {
 
-            throw new BizException(BizError.BASICS_PARAM_EXCEPTION_CODE);
+            throw new ParameterException(UfaceError.BASICS_PARAM_EXCEPTION_CODE);
         }
     }
+
+    public static void notEtpty(final Collection<?> collection) {
+        Boolean isNull = CollectionUtils.isEmpty(collection);
+        if (isNull) {
+            throw new ParameterException(UfaceError.BASICS_PARAM_EXCEPTION_CODE);
+        }
+    }
+
 }
