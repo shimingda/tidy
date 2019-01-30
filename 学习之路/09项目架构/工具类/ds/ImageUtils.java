@@ -50,14 +50,14 @@ public class ImageUtils {
             return null;
         }
         Queue<String> urls = new LinkedBlockingQueue<>();
-        imageDatas.forEach(imageDate -> {
-            String finalImageDate = new String();
-            finalImageDate = imageDate;
+        imageDatas.forEach(imageData -> {
+            String finalImageData = new String();
+            finalImageData = imageData;
             // if (imageDate.length() > 50 * 1024) {
             // finalImageDate = compress(imageDate);
             // System.out.println("图片在压缩");
             // }
-            byte[] imgDataByte = Base64.getDecoder().decode(finalImageDate);
+            byte[] imgDataByte = Base64.getDecoder().decode(finalImageData);
             String faceUrl = imageAccess.saveImage(imgDataByte, ImageAccessType.UPLOAD.getValue());
             urls.add(faceUrl);
         });
@@ -126,16 +126,14 @@ public class ImageUtils {
      * @param faceUrl
      * @return
      */
-    public static String getFirstImage(String faceUrl, int type) {
+    public static String getImageData(String faceUrl, int type) {
         ImageAccess imageAccess = SpringContextHolder.getBean(ImageAccess.class);
 
         if (null == faceUrl) {
             return null;
         }
 
-        List<String> urls = Arrays.asList(StringUtils.split(faceUrl, ","));
-
-        byte[] imgData = imageAccess.getImage(urls.get(0), type);
+        byte[] imgData = imageAccess.getImage(faceUrl, type);
         String imageData = imgData != null ? Base64.getEncoder().encodeToString(imgData) : null;
 
         return imageData;
@@ -148,44 +146,45 @@ public class ImageUtils {
      * @return
      * @throws IOException
      */
-    public static String getCompress(String faceUrl, int type) {
-        ImageAccess imageAccess = SpringContextHolder.getBean(ImageAccess.class);
-        CopysUtils.copy(imageAccess, imageAccess);
-        if (null == faceUrl) {
-            return null;
-        }
-        // 获取图片
-
-        List<String> urls = Arrays.asList(StringUtils.split(faceUrl, ","));
-        byte[] imgData = imageAccess.getImage(urls.get(0), type);
-        if (null == imgData) {
-            log.error("图片读取：{}", urls.get(0));
-            return null;
-        }
-        // 压缩图片
-        ByteArrayInputStream in;
-        BufferedImage image;
-        BufferedImage bi;
-        ByteArrayOutputStream os;
-        try {
-            in = new ByteArrayInputStream(imgData);
-            os = new ByteArrayOutputStream();
-            long startimageTime = System.currentTimeMillis();
-
-            image = ImageIO.read(in);
-            long endimageTime = System.currentTimeMillis();
-            System.out.println("测试image调用时长： " + (endimageTime - startimageTime));
-
-            bi = Thumbnails.of(image).scale(com.rw.ssd.img.ImageUtils.compScale(image)).asBufferedImage();
-            ImageIO.write(bi, "jpg", os);
-
-        } catch (IOException e) {
-            log.error("图片压缩失败：{}", urls.get(0));
-            return Base64.getEncoder().encodeToString(imgData);
-        }
-
-        return Base64.getEncoder().encodeToString(os.toByteArray());
-    }
+    // public static String getCompress(String faceUrl, int type) {
+    // ImageAccess imageAccess = SpringContextHolder.getBean(ImageAccess.class);
+    // CopysUtils.copy(imageAccess, imageAccess);
+    // if (null == faceUrl) {
+    // return null;
+    // }
+    // // 获取图片
+    //
+    // List<String> urls = Arrays.asList(StringUtils.split(faceUrl, ","));
+    // byte[] imgData = imageAccess.getImage(urls.get(0), type);
+    // if (null == imgData) {
+    // log.error("图片读取：{}", urls.get(0));
+    // return null;
+    // }
+    // // 压缩图片
+    // ByteArrayInputStream in;
+    // BufferedImage image;
+    // BufferedImage bi;
+    // ByteArrayOutputStream os;
+    // try {
+    // in = new ByteArrayInputStream(imgData);
+    // os = new ByteArrayOutputStream();
+    // long startimageTime = System.currentTimeMillis();
+    //
+    // image = ImageIO.read(in);
+    // long endimageTime = System.currentTimeMillis();
+    // System.out.println("测试image调用时长： " + (endimageTime - startimageTime));
+    //
+    // bi =
+    // Thumbnails.of(image).scale(com.rw.ssd.img.ImageUtils.compScale(image)).asBufferedImage();
+    // ImageIO.write(bi, "jpg", os);
+    //
+    // } catch (IOException e) {
+    // log.error("图片压缩失败：{}", urls.get(0));
+    // return Base64.getEncoder().encodeToString(imgData);
+    // }
+    //
+    // return Base64.getEncoder().encodeToString(os.toByteArray());
+    // }
 
     public static String compress(String imageDate) {
 

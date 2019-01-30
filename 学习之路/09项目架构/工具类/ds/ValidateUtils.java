@@ -23,6 +23,11 @@ public class ValidateUtils {
     private ValidateUtils() {
     }
 
+    /**
+     * 字符不为空
+     * 
+     * @param chars
+     */
     public static void notBlank(final String chars) {
         if (chars == null || StringUtils.isBlank(chars)) {
 
@@ -30,6 +35,11 @@ public class ValidateUtils {
         }
     }
 
+    /**
+     * 对象不为空
+     * 
+     * @param object
+     */
     public static void notNull(final Object object) {
         if (object == null) {
 
@@ -37,6 +47,11 @@ public class ValidateUtils {
         }
     }
 
+    /**
+     * 集合不为空
+     * 
+     * @param collection
+     */
     public static void notEtpty(final Collection<?> collection) {
         Boolean isNull = CollectionUtils.isEmpty(collection);
         if (isNull) {

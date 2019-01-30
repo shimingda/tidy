@@ -4,9 +4,12 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.rw.ssd.uface.db.jpa.entity.device.Device;
 import com.rw.ssd.uface.db.jpa.entity.person.Group;
 import com.rw.ssd.uface.db.jpa.idgen.Snowflake;
 import com.rw.ssd.uface.db.jpa.repo.GroupRepo;
@@ -24,6 +27,46 @@ import com.rw.ssd.uface.db.jpa.repo.GroupRepo;
 public class BizUtils {
 
     private BizUtils() {
+    }
+
+    /**
+     * Collection<String> ==> List<Long>
+     * 
+     * @param collections
+     * @return
+     */
+    public static List<Long> convertList(Collection<String> collections) {
+        return collections.parallelStream().map(x -> Long.valueOf(x)).collect(Collectors.toList());
+    }
+
+    /**
+     * Collection<String> ==> Set<Long>
+     * 
+     * @param collections
+     * @return
+     */
+    public static Set<Long> convertSet(Collection<String> collections) {
+        return collections.parallelStream().map(x -> Long.valueOf(x)).collect(Collectors.toSet());
+    }
+
+    /**
+     * Collection<Long> ==> List<String>
+     * 
+     * @param collections
+     * @return
+     */
+    public static List<String> convertStringList(Collection<Long> collections) {
+        return collections.parallelStream().map(x -> String.valueOf(x)).collect(Collectors.toList());
+    }
+
+    /**
+     * Collection<Long> ==> Set<String>
+     * 
+     * @param collections
+     * @return
+     */
+    public static Set<String> convertStringSet(Collection<Long> collections) {
+        return collections.parallelStream().map(x -> String.valueOf(x)).collect(Collectors.toSet());
     }
 
     /**
@@ -73,11 +116,38 @@ public class BizUtils {
         return StringUtils.join(names, "-");
     }
 
+    /**
+     * 生成全局唯一ID
+     */
     public static long getGenerteKey() {
 
         Snowflake snowflake = new Snowflake();
 
         return snowflake.generateKey();
+    }
+
+    /**
+     * 按照类型过滤设备
+     * 
+     * @param allDevices
+     * @param type
+     * @return
+     */
+    public static List<Device> filterByType(List<Device> allDevices, Integer type) {
+
+        return allDevices.stream().filter(x -> x.getType().equals(type)).collect(Collectors.toList());
+    }
+
+    /**
+     * 获取对应类型的设备ID
+     * 
+     * @param devices
+     * @param type
+     * @return
+     */
+    public static List<Long> getIdsFilterByType(List<Device> allDevices, Integer type) {
+        List<Device> devices = filterByType(allDevices, type);
+        return devices.stream().map(x -> x.getId()).collect(Collectors.toList());
     }
 
 }

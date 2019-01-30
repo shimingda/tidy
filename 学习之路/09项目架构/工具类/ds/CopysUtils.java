@@ -10,6 +10,8 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import lombok.extern.slf4j.Slf4j;
+
 /******************************************************************************
  * 
  * <p>
@@ -20,6 +22,7 @@ import org.slf4j.LoggerFactory;
  * @author shimingda@deepsense.cn
  * 
  *****************************************************************************/
+@Slf4j
 public class CopysUtils {
     private CopysUtils() {
     }
@@ -42,7 +45,7 @@ public class CopysUtils {
                 fd.setAccessible(true);
                 srcMap.put(fd.getName(), fd.get(src)); // 获取属性值
             } catch (Exception e) {
-                e.printStackTrace();
+                log.error("转化异常{}", e.getMessage());
             }
         }
         /**
@@ -66,7 +69,7 @@ public class CopysUtils {
             try {
                 fd.set(dest, srcMap.get(fd.getName())); // 给属性赋值
             } catch (Exception e) {
-                e.printStackTrace();
+                log.error("转化异常{}", e.getMessage());
             }
         }
     }
