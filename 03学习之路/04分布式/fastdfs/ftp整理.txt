@@ -1,0 +1,25 @@
+/usr/bin/fdfs_storaged /etc/fdfs/storage.conf restart
+
+服务重启storage
+  ldd /usr/bin/fdfs_storaged 
+  ll /usr/local/lib/libfastcommon.so
+  ll /usr/lib/libfastcommon.so
+  rm -rf /usr/local/lib/libfastcommon.so.1
+  ldd /usr/bin/fdfs_storaged
+  /usr/bin/fdfs_storaged /etc/fdfs/storage.conf restart
+
+服务重启tracker
+   ldd /usr/bin/fdfs_trackerd 
+   ll /usr/local/lib/libfastcommon.so
+   ll /usr/lib/libfastcommon.so
+   rm -rf /usr/local/lib/libfastcommon.so.1
+   ldd /usr/bin/fdfs_trackerd 
+   /usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf restart
+   
+上传图片命令
+   /usr/bin/fdfs_upload_file  /etc/fdfs/client.conf /usr/local/4.jpg
+http://192.168.156.66/image/4.jpg
+symbol lookup error: nginx: master process /usr/local/nginx/sbin/nginx: undefined symbol: log_init
+ #gzip  on;    #设置缓存    server_names_hash_bucket_size 128;    client_header_buffer_size 32k;    large_client_header_buffers 4 32k;    client_max_body_size 300m;     proxy_redirect off;    proxy_set_header Host $http_host;    proxy_set_header X-Real-IP $remote_addr;    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;    proxy_connect_timeout 90;    proxy_send_timeout 90;    proxy_read_timeout 90;    proxy_buffer_size 16k;    proxy_buffers 4 64k;    proxy_busy_buffers_size 128k;    proxy_temp_file_write_size 128k;    #设置缓存存储路径，存储方式，分别内存大小，磁盘最大空间，缓存期限    proxy_cache_path /fastdfs/cache/nginx/proxy_cache levels=1:2    keys_zone=http-cache:200m max_size=1g inactive=30d;    proxy_temp_path /fastdfs/cache/nginx/proxy_cache/tmp;    #group1的服务设置    upstream fdfs_group1 {         server 192.168.156.7:8888 weight=1 max_fails=2 fail_timeout=30s;         server 192.168.156.8:8888 weight=1 max_fails=2 fail_timeout=30s;    }    #group2的服务设置    upstream fdfs_group2 {         server 192.168.156.9:8888 weight=1 max_fails=2 fail_timeout=30s;         server 192.168.156.10:8888 weight=1 max_fails=2 fail_timeout=30s;    }
+
+
