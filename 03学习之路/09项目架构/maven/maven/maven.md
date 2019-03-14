@@ -188,6 +188,7 @@ packaging：该元素定义maven打包方式pom、jar、war
 | mvn archetype:generate | 创建Maven的普通java项目                                      |
 | mvn tomcat:run         | 在tomcat容器中运行web应用                                    |
 | mvn jetty:run          | 调用 Jetty 插件的 Run 目标在 Jetty Servlet 容器中启动 web 应用 |
+|mvn dependency:purge-local-repository|清理本地依赖|
 
  
 
