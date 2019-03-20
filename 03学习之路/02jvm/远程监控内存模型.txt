@@ -1,0 +1,1 @@
+nohup java -jar -Dcom.sun.management.jmxremote.port=8999 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Xmx512m  biz-server.jar &
