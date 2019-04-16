@@ -1,0 +1,39 @@
+设置JVM内存的参数有四个：
+-Xmx   Java Heap最大值，默认值为物理内存的1/4，最佳设值应该视物理内存大小及计算机内其他内存开销而定；
+-Xms   Java Heap初始值，Server端JVM最好将-Xms和-Xmx设为相同值，开发测试机JVM可以保留默认值；
+-Xmn   Java Heap Young区大小，不熟悉最好保留默认值；
+-Xss   每个线程的Stack大小，不熟悉最好保留默认值；
+
+JAVA进程内存 = JVM进程内存+heap内存+ 永久代内存+ 本地方法栈内存+线程栈内存 +堆外内存 +socket 缓冲区内存+元空间
+linux内存和JAVA堆中的关系
+RES = JAVA正在存活的内存对象大小 + 未回收的对象大小  + 其它
+VIART= JAVA中申请的内存大小，即 -Xmx  -Xms + 其它
+其它 = 永久代内存+ 本地方法栈内存+线程栈内存 +堆外内存 +socket 缓冲区内存 +JVM进程内存
+
+VIRT 虚拟内存中含有共享库、共享内存、栈、堆，所有已申请的总内存空间。
+RES  是进程正在使用的内存空间(栈、堆)，申请内存后该内存段已被重新赋值。
+SHR  是共享内存正在使用的空间。
+SWAP 交换的是已经申请，但没有使用的空间，包括(栈、堆、共享内存)。
+DATA 是进程栈、堆申请的总空间。
+
+
+Address:  start address of map  映像起始地址
+Kbytes:  size of map in kilobytes  映像大小
+RSS:  resident set size in kilobytes  驻留集大小
+Dirty:  dirty pages (both shared and private) in kilobytes  脏页大小
+Mode:  permissions on map 映像权限: r=read, w=write, x=execute, s=shared, p=private (copy on write)  
+Mapping:  file backing the map , or '[ anon ]' for allocated memory, or '[ stack ]' for the program stack.  映像支持文件,[anon]为已分配内存 [stack]为程序堆栈
+Offset:  offset into the file  文件偏移
+Device:  device name (major:minor)  设备名
+
+
+内存分析
+jps -v
+
+top -p pid
+
+pmap -d -x pid
+
+jmap -dump:format=b,file=output 10665
+
+导入工具中
