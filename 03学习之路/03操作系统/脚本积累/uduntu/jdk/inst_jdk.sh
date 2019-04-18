@@ -1,3 +1,7 @@
 #!/bin/bash
 
-rpm -Uvh jdk-8u144-linux-x64.rpm
+
+sudo dpkg -i deb/*.deb
+echo -en "\\033[1;32m"
+echo "install jdk success"
+
