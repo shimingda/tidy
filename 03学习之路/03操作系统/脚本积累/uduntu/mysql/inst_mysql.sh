@@ -4,20 +4,18 @@
 #############################################################################################
 
 ## clean the password file before intall
+sudo  dpkg -i deb/base/*.deb
 
-sudo  dpkg -i server/deb/*.deb
+sudo  dpkg -i deb/client/*.deb
 
+sudo  dpkg -i deb/server/*.deb
 #sudo apt-get install mysql-server
 
 #sudo apt install mysql-client
 
-#sudo apt install libmysqlclient-dev
+#sudo apt install libmysqlclient-dev:
 
-#sudo sh server/bin/*.bin
-
-#sudo dpkg -i server/deb/*.deb
-
-sudo apt install -f
+#sudo apt install -f
 
 # start mysql
 sudo service mysql start

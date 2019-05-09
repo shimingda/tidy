@@ -11,14 +11,15 @@ sudo  dpkg -i deb/relong/*.deb
 
 sudo  dpkg -i deb/server/*.deb
 
+sudo apt install -f
 #SET USER
-rabbitmqctl add_user test test
-rabbitmqctl set_user_tags test administrator
-rabbitmqctl set_permissions test ".*" ".*" ".*"
-rabbitmq-plugins enable rabbitmq_management
+sudo rabbitmqctl add_user test test
+sudo rabbitmqctl set_user_tags test administrator
+sudo rabbitmqctl set_permissions test ".*" ".*" ".*"
+sudo rabbitmq-plugins enable rabbitmq_management
 # set rabbitmq start on boot
-#systemctl start rabbitmq-server;
-#systemctl enable rabbitmq-server;
+sudo systemctl start rabbitmq-server;
+sudo systemctl enable rabbitmq-server;
 #systemctl stop rabbitmq-server;
 
 # use rabbitmq user account to operate MQ!!!!
