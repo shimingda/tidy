@@ -76,8 +76,7 @@ public static Integer valueOf(int i){
 
 ### String所有内容
 
-文档：深入理解Java中的String
-链接：http://note.youdao.com/noteshare?id=c861158c14cdb89571d99027d7db9fb2&sub=wcp1579140619016340
+https://blog.csdn.net/smd2575624555/article/details/104000831
 
 ### "==",equals()和hashCode
 
@@ -273,10 +272,6 @@ Map
 ├HashMap
 └WeakHashMap
 Collection是最基本的集合接口，一个Collection代表一组Object，即Collection的元素（Elements）n
-
-###String
-
-String类是final类故不可以继承。因为String是调用最频繁的类型，要保持稳定和安全。
 
 ###异常
 
