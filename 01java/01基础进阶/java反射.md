@@ -2,6 +2,26 @@
 
 > Java 反射是 Java 被视为动态语言的一个关键性质。这个机制允许程序在运行时透过 Reflection APIs 取得任何一个已知名称的 class 的内部信息，包括其modifiers（诸如 public, static 等）、superclass（例如 Object）、实现之interfaces（例如 Cloneable），也包括 fields 和 methods 的所有信息，并可于运行时改变 fields 内容或唤起 methods。
 
+![](反射包.png)
+
+RTTI
+
+运行期类型鉴定（RTTI）的概念
+
+## 使用场景
+
+- 开发通用框架 - 反射最重要的用途就是开发各种通用框架。
+
+- 动态代理 - 在切面编程（AOP）中，需要拦截特定的方法，通常，会选择动态代理方式
+
+- 注解 - 注解本身仅仅是起到标记作用，它需要利用反射机制，根据注解标记去调用注解解释器，执行行为。
+
+### 类加载的完整过程如下：
+
+1. 在编译时，Java 编译器编译好 .java 文件之后，在磁盘中产生 .class 文件。.class 文件是二进制文件，内容是只有 JVM 能够识别的机器码。
+2. JVM 中的类加载器读取字节码文件，取出二进制数据，加载到内存中，解析.class 文件内的信息。类加载器会根据类的全限定名来获取此类的二进制字节流；然后，将字节流所代表的静态存储结构转化为方法区的运行时数据结构；接着，在内存中生成代表这个类的 java.lang.Class 对象。
+3. 加载结束后，JVM 开始进行连接阶段（包含验证、准备、初始化）。经过这一系列操作，类的变量会被初始化。
+
 ##反射方式
 
 - 调 用getClass()
@@ -98,3 +118,4 @@ public Constructor<?>[] getDeclaredConstructors()
 
 
 
+笨神https://mp.weixin.qq.com/s/5H6UHcP6kvR2X5hTj_SBjA
