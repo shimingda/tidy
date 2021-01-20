@@ -142,13 +142,9 @@ PS D:\git\java-dome\learn\target\classes\com\somin\枚举> javap -c .\SeasonJava
 Compiled from "SeasonJavap.java"
 public final class com.somin.枚举.SeasonJavap extends java.lang.Enum<com.somin.枚举.SeasonJavap> {
   public static final com.somin.枚举.SeasonJavap SPRING;
-
   public static final com.somin.枚举.SeasonJavap SUMMER;
-
   public static final com.somin.枚举.SeasonJavap AUTUMN;
-
   public static final com.somin.枚举.SeasonJavap WINTER;
-
   public static com.somin.枚举.SeasonJavap[] values();
     Code:
        0: getstatic     #1                  // Field $VALUES:[Lcom/somin/枚举/SeasonJavap;
