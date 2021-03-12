@@ -1,0 +1,15 @@
+1.spring程序是如何启动的？
+2.spring是如何加载配置文件到应用程序的？
+3.掌握核心接口BeanDefinitionReader
+4.掌握核心接口BeanFactory
+5.彻底搞懂Spring的refresh方法
+6.BeanPostProcessor接口的作用及实现
+7.BeanFactoryPostProcessor接口的作用及实现
+8.Spring Bean有没有必要实现Aware接口
+9.彻底理解bean的生命周期
+10.循环依赖问题
+11.factoryBean接口的作用
+12.bean的初始化都经历了什么
+13.cglib和jdk动态代理的机制
+14.aop是如何处理的
+15.如何回答spring相关的问题
