@@ -2,6 +2,10 @@
 
 > Java 反射是 Java 被视为动态语言的一个关键性质。这个机制允许程序在运行时透过 Reflection APIs 取得任何一个已知名称的 class 的内部信息，包括其modifiers（诸如 public, static 等）、superclass（例如 Object）、实现之interfaces（例如 Cloneable），也包括 fields 和 methods 的所有信息，并可于运行时改变 fields 内容或唤起 methods。
 
+
+
+.class类是反射的核心类，包括类的变量，类的属性，类的超类，类实现的借口，类的修饰符，类的对应的类的加载器等
+
 ![](反射包.png)
 
 RTTI
