@@ -1,23 +1,5 @@
 # Spring源码
 
-## 学习方法
-
-### 1.尝试看注释
-
-- 看不懂使用插件
-
-### 2.先梳理脉络，不要深入细节
-
-### 3.大胆猜想+进行验证
-
-### 4.做一些dome进行尝试debug
-
-### 说实话有点难，直接看源码，可以先找一个网上视频看下，这个视频的不容特别深入，生动有趣就行，先对整体有个了解，然后跟着记录笔记
-
-### 然后下载spring源码，在源码上进行试验，尝试进行debug，一步步跟着
-
-### 刷完视频建议看一本书《Spring源码深入解析》，这个树有点老了，但是核心的东西还是，对于视频的笔记进行补充
-
 ## 核心内容
 
 ### IOC
@@ -47,9 +29,9 @@ public interface MethodInterceptor extends Callback {
 
 		- Enhancer 
 		- FastClass
-
+	
 	- org.springframework.aop.framework.JdkDynamicAopProxy
-
+	
 		- jdk动态代理，继承InvocationHandler 类实现invoke接口，使用Proxy类的newProxyInstance方法 生成代理子类，返回类型为新的子类向上转型，这时调用接口调用的是子类接口，达到前后切面效果
 
 - aop是ioc的扩展功能 ，实现的原理分为反射，多台
@@ -75,7 +57,7 @@ public interface BeanFactoryPostProcessor {
 
 
 	- ConfigurableListableBeanFactory 
-
+	
 		-  BeanDefinition getBeanDefinition(String var1) throws NoSuchBeanDefinitionException;
 
 - org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor
@@ -191,15 +173,15 @@ public interface BeanFactoryPostProcessor {
 	private final Map<String, Object> earlySingletonObjects = new ConcurrentHashMap<>(16);
 
 			- singletonObjects 
-
+	
 				- 存储实例化对象
-
+	
 			- earlySingletonObjects 
-
+	
 				- 存储初始化对象
-
+	
 			- singletonFactories 
-
+	
 				- 存labmod表达式
 				- addSingletonFactory(beanName, () -> getEarlyBeanReference(beanName, mbd, bean));
 
